@@ -9,13 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.0",
     "bootstrap": "^5.3.6",
     "bulma": "^1.0.4",
     "next": "15.3.2",
     "postgres": "^3.4.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "sass": "^1.89.0"
+    "sass": "^1.89.0",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
