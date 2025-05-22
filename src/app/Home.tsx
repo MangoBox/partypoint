@@ -2,19 +2,7 @@
 import { useState, useEffect } from "react";
 import { VoteInfo } from "./types";
 import { v4 } from "uuid";
-
-
-interface Presentation {
-  title : string;
-  name : string;
-  pfp : string;
-}
-
-const pres = {
-  title : "Presentation 1",
-  name : "John Presentation",
-  pfp : "https://community.adobe.com/t5/image/serverpage/image-id/636919i6D8593BB232D17E4?v=v2"
-}
+import { PresentationInfo } from "./types";
 
 function getMachineId() {
     let machineId = localStorage.getItem('MachineId');
@@ -28,6 +16,7 @@ function getMachineId() {
 
 interface HomeProps {
   sendVote : (voteInfo : VoteInfo) => void;
+  getPresentation : () => Promise<PresentationInfo>;
   points : number[]
 }
 
@@ -47,17 +36,31 @@ function updateUsedPoints(points : number[]) {
 export default function Home(
   {
     sendVote,
+    getPresentation,
     points
   } : HomeProps
 ) {
  
   const [usedPoints, setUsedPoints] = useState([] as number[]);
-  const [presentation, setPresentation] = useState(pres as Presentation | null);
+  const [presentation, setPresentation] = useState(null as PresentationInfo | null);
   const [confirmDialog, setConfirmDialog] = useState(0);
 
   useEffect(() => {
     setUsedPoints(loadSetPoints())
   }, [])
+
+  useEffect(() => {
+    const fetchPres = async () => {
+      const pres = await getPresentation();
+      console.log(pres)
+      setPresentation(pres);
+    }
+    fetchPres();
+    const interval = setInterval(() => {
+      fetchPres();
+    }, 5000);
+    return () => clearInterval(interval); 
+  }, []);
 
 
   function voteButton (points : number) {
@@ -102,7 +105,7 @@ export default function Home(
                 <img src={presentation?.pfp}/>
               </figure>
               <h1 className="title"> {presentation?.title} </h1>
-              <p className="is-size-5">by {presentation?.name}</p>
+              <p className="is-size-5">by {presentation?.creator}</p>
               <div className="box">
                 <p className="is-size-5">✏️ Select Score</p>
                 {
