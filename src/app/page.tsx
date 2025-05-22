@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 
-import postgres from 'postgres';
+//import postgres from 'postgres';
  
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+//const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
 interface Presentation {
   title : string;
