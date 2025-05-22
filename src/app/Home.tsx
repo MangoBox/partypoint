@@ -16,7 +16,7 @@ function getMachineId() {
 
 interface HomeProps {
   sendVote : (voteInfo : VoteInfo) => void;
-  getPresentation : () => Promise<PresentationInfo>;
+  getPresentation : () => Promise<PresentationInfo | null>;
   points : number[]
 }
 
