@@ -80,12 +80,12 @@ export default function Home(
         <div className="modal-background"></div>
         <div className="modal-card">
           <header className="modal-card-head">
-            <p className="modal-card-title">Are you sure you want to give {confirmDialog} points?</p>
+            <p className="modal-card-title">Are you sure you want to give {confirmDialog} ⭐?</p>
           </header>
           <footer className="modal-card-foot">
             <div className="buttons">
-              <button className="button" onClick={() => setConfirmDialog(0)}>nope</button>
-              <button className="button is-success" onClick={() => voteButton(confirmDialog)}>yep</button>
+              <button className="button" onClick={() => setConfirmDialog(0)}>nope 👎</button>
+              <button className="button is-success" onClick={() => voteButton(confirmDialog)}>yep 👍</button>
             </div>
           </footer>
         </div>
@@ -113,11 +113,11 @@ export default function Home(
                     return (
                       usedPoints.find((element) => element == score) ?
                         <div key={score}>
-                          <button className="button center is-large" disabled> {score} Points </button>
+                          <button className="button center is-large" disabled> {score} ⭐</button>
                         </div>
                       :
                         <div key={score}>
-                          <button className="button center is-large" onClick={() => {setConfirmDialog(score)}}> {score} Points </button>
+                          <button className="button center is-large is-success" onClick={() => {setConfirmDialog(score)}}> {score} ⭐</button>
                         </div>)
                   })
                 }
