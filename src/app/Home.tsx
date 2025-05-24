@@ -101,9 +101,6 @@ export default function Home(
         <div className="section">
           <div className="columns is-centered">
             <div className="column">
-              <figure className="image is-128x128 centered is-inline-block">
-                <img src={presentation?.pfp}/>
-              </figure>
               <h1 className="title"> {presentation?.title} </h1>
               <p className="is-size-5">by {presentation?.creator}</p>
               <div className="box">
